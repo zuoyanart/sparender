@@ -1,0 +1,18 @@
+# Logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.gz
+task.db
+
+# Dependency directory
+/node_modules/
+
+# IDE config
+.idea
+.vscode
+
+

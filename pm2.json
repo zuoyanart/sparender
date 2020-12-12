@@ -1,0 +1,16 @@
+{
+  "apps": [{
+    "name": "task",
+    "script": "production.js",
+    "cwd": "./",
+    "exec_mode": "fork",
+    "instances": 1,
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+
+    }
+  }]
+}
