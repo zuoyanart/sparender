@@ -18,15 +18,23 @@ module.exports = class extends zuoyan.Controller {
         console.log(('limit', global.renderLimit));
         var urlObj = url.parse(req.url, true);
         var query = urlObj.query;
-        if (query.url) {
+        //连接关闭事件
+        res.on('close', () => {
+          if (urlObj.pathname === '/render' && query.url) {
+            global.renderLimit--;
+          }
+          logger.warn('close', req.url);
+        });
+        if (urlObj.pathname === '/render' && query.url) {
           if (global.renderLimit >= tools.config('renderLimit')) {
             this.sendHtml(res, '超出并发限制,请稍后重试');
             return;
           } else {
+            global.renderLimit++;
             this.sendHtml(res, await this.httpS.getContent(query.url));
           }
         } else {
-          this.sendHtml(res);
+          this.sendHtml(res, '请求地址非法');
         }
 
       } catch (e) {
@@ -37,9 +45,11 @@ module.exports = class extends zuoyan.Controller {
 
     });
 
+
     server.listen(tools.config('port'), function () {
       console.log('服务器启动成功!');
       console.log('正在监听 ' + tools.config('port') + ' 端口');
+
     });
   }
 

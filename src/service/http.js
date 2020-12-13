@@ -9,10 +9,10 @@ module.exports = class extends zuoyan.Service {
   async getContent(url) {
     const data = await zyRedis.get(url);
     if (tools.isEmpty(data)) {
-      global.renderLimit++;
+      // global.renderLimit++;
       const content = await this.renderS.test(url);
       zyRedis.set(url, content, 'ex', tools.config('redis').ex);
-      global.renderLimit--;
+      // global.renderLimit--;
       return content;
     } else {
       return data;
