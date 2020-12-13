@@ -21,7 +21,39 @@ http://127.0.0.1:3001?url=http://www.example.com
  * 已集成任务调度
  * 生产，开发环境配置
  * redis缓存
-  
+
+
+#### 性能对比
+
+服务器: 1H2G1M  (别打我, 阿里云自用的)
+并发:10
+运行时间:40S
+
+项目配置:  不使用缓存, 屏蔽图片,字体,多媒体等
+
+请求地址: http://xxxx/render?url=https://www.baidu.com
+
+<table>
+  <tr>
+  <td></td>
+  <td>单次渲染</td>
+  <td>并发QPS</td>
+  </tr>
+  <tr>
+  <td>prerender</td>
+  <td>2054ms</td>
+  <td>0.03</td>
+  </tr>
+    <tr>
+  <td>sparender</td>
+  <td>476ms</td>
+  <td>0.03</td>
+  </tr>
+</table>
+
+* ps: 初步测试,因为服务器和带宽真不怎么样, 在QPS上的表现在高配服务器上可能变数很大, 不过单次渲染的差距还是比较明显(在我笔记本上测试也基本上是5倍的差距)
+
+* 关于性能还需进一步测试
 
 ### 渲染方式对比
 
@@ -82,4 +114,3 @@ Using dynamic rendering to serve completely different content to users and crawl
 所以不做过多的黑帽或者灰帽, 百度也不会做作弊处理
 
 
-#### 性能对比

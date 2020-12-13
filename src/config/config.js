@@ -3,7 +3,7 @@ module.exports = {
   port: 80,
   renderLimit: 5,
   pageTimeout: 1000 * 10,
-  redis: {
+  redis1: {
     port: 6379,
     host: '127.0.0.1',
     ex: 1000 * 60 * 10
