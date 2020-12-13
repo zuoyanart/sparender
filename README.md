@@ -68,6 +68,7 @@ Using dynamic rendering to serve completely different content to users and crawl
 
 至于百度,请参考
 <a href="https://www.zhihu.com/question/19864108" target="_blank">豆丁网是在做黑帽 SEO 吗？</a>
+
 <a href="https://ask.seowhy.com/question/16688" target="_blank">通过user-agent判断，将Baiduspider定向到http页面</a>
 
 基本的解释是:
@@ -79,3 +80,6 @@ Using dynamic rendering to serve completely different content to users and crawl
 > 实在不行了，还可以有白名单作为最后的弥补手段，拯救这批大网站是没什么问题的啦。
 
 所以不做过多的黑帽或者灰帽, 百度也不会做作弊处理
+
+
+#### 性能对比

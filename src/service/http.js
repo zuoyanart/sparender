@@ -13,9 +13,9 @@ module.exports = class extends zuoyan.Service {
       const content = await this.renderS.test(url);
       zyRedis.set(url, content, 'ex', tools.config('redis').ex);
       // global.renderLimit--;
-      return content;
+      return (content.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
     } else {
-      return data;
+      return (data.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
     }
   }
 };
