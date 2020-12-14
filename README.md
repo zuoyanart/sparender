@@ -4,7 +4,9 @@
 ## 解决了什么问题
 很多公司和开发者使用JavaScript框架(包括AngularJS，BackboneJS，ReactJS, VueJS)开发应用程序和网站。但很多搜索引擎，社交媒体，爬虫不支持抓取JavaScript的网页，也就无法做网站SEO。
 
-<b>通过UserAgent判断,如果是来自于爬虫, 则通过nginx(tomcat, Apache)等反向代理到本服务,则可以把渲染好的html网页内容传递给搜索引擎, 从而间接实现SEO</b>
+<b>通过UserAgent判断,如果是来自于爬虫, 则通过nginx(tomcat, Apache)等反向代理到本服务,则可以把渲染好的html网页内容传递给搜索引擎, 从而间接实现SEO,, 从而间接实现 SEO, 这样,既可以保持纯粹的前端开始思路, 还能节省 SSR 造成的服务器负担</b>
+
+也可以使用在爬虫采集, 生成网页截图,生成网页PDF场景
 
 ## 使用
 ```js
