@@ -8,8 +8,6 @@ puppeteer.use(StealthPlugin());
 module.exports = class extends zuoyan.Service {
   constructor() {
     super();
-    // this.userM = this.model('user');
-    // this.articleM = this.model('test/article');
   }
 
   /**
@@ -82,12 +80,19 @@ module.exports = class extends zuoyan.Service {
   /**
    * 
    */
-  async test(url = 'http://127.0.0.1:8181/') {
+  async test(url = 'http://127.0.0.1:8181/', isMobile = false) {
     // 在业务中取出实例使用
     return await global.pptPoll.use(async instance => {
       return new Promise(async (resolve, reject) => {
         try {
           const page = await instance.newPage();
+          //如果是移动端则设置UA和视图
+          if (isMobile) {
+            let iPhoneX = tools.config('mobileRender');
+            await page.setUserAgent(iPhoneX.userAgent);
+            // await page.setViewport(iPhoneX.viewport);
+          }
+
           const pendingXHR = new PendingXHR(page);
           // 开启请求拦截, 无头模式下有效
           const blockTypes = ['image', 'media', 'font', 'manifest', 'other', 'texttrack', 'websocket'];

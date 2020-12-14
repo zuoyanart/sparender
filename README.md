@@ -1,6 +1,11 @@
 ### 这是什么?
 这是一个高性能的基于`puppeteer`的`SSR`方案, 他使用Headless Chrome从网页中生成html,然后以http的方法返回html内容
 
+## 解决了什么问题
+很多公司和开发者使用JavaScript框架(包括AngularJS，BackboneJS，ReactJS, VueJS)开发应用程序和网站。但很多搜索引擎，社交媒体，爬虫不支持抓取JavaScript的网页，也就无法做网站SEO。
+
+<b>通过UserAgent判断,如果是来自于爬虫, 则通过nginx(tomcat, Apache)等反向代理到本服务,则可以把渲染好的html网页内容传递给搜索引擎, 从而间接实现SEO</b>
+
 ## 使用
 ```js
 git clone  
@@ -11,7 +16,7 @@ npm start
 
 ## 查看效果
 ```js
-http://127.0.0.1:3001?url=http://www.example.com
+http://127.0.0.1:3001/render?url=http://www.example.com
 ```
 
 ### 功能
@@ -21,6 +26,7 @@ http://127.0.0.1:3001?url=http://www.example.com
  * 已集成任务调度
  * 生产，开发环境配置
  * redis缓存
+ * 自动来路, 如果来自移动端则自动设置请求UA和viewpoint(使用iphoneX的环境参数)
 
 
 #### 性能对比

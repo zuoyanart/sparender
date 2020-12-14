@@ -189,12 +189,12 @@ module.exports = class {
       });
     }
   };
-    /**
- * 爬虫实体字符转义
- * @method htmlDecode
- * @param  {[type]}   str [description]
- * @return {[type]}       [description]
- */
+  /**
+* 爬虫实体字符转义
+* @method htmlDecode
+* @param  {[type]}   str [description]
+* @return {[type]}       [description]
+*/
   htmlDecode(str) {
     // 一般可以先转换为标准 unicode 格式（有需要就添加：当返回的数据呈现太多\\\u 之类的时）
     str = unescape(str.replace(/\\u/g, '%u'));
@@ -430,4 +430,25 @@ module.exports = class {
       data: data
     };
   };
+  /**
+   * 判断是不是移动端
+   */
+  checkMobile(agent) {
+    let flag = false;
+    agent = agent.toLowerCase();
+    const keywords = ['android', 'iphone', 'ipod', 'ipad', 'windows phone', 'mqqbrowser'];
+    // 排除 Windows 桌面系统
+    if (!(agent.indexOf('windows nt') > -1) || (agent.indexOf('windows nt') > -1 && agent.indexOf('compatible; msie 9.0;') > -1)) {
+      // 排除苹果桌面系统
+      if (!(agent.indexOf('windows nt') > -1) && !agent.indexOf('macintosh') > -1) {
+        for (const item of keywords) {
+          if (agent.indexOf(item) > -1) {
+            flag = true;
+            break;
+          }
+        }
+      }
+    }
+    return flag;
+  }
 };

@@ -8,6 +8,19 @@ module.exports = {
     host: '127.0.0.1',
     ex: 1000 * 60 * 10
   },
+  mobileRender: {
+    name: 'iPhone X',
+    userAgent:
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: false,
+      hasTouch: false,
+      isLandscape: false,
+    }
+  },
   puppeteer: {
     max: 5,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
     min: 1,//保证池中最少有多少个实例存活
