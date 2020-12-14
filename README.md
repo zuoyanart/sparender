@@ -47,7 +47,7 @@ http://127.0.0.1:3001?url=http://www.example.com
     <tr>
   <td>sparender</td>
   <td>476ms</td>
-  <td>0.03</td>
+  <td>0.3</td>
   </tr>
 </table>
 
