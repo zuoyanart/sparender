@@ -11,9 +11,9 @@ module.exports = class extends zuoyan.Service {
     const redisKey = this.formatUrlKey(url, isMobile);
 
     const data = await zyRedis.get(redisKey);
-    if (tools.isEmpty(data)) {
+    if (tools.isEmpty(data) || true) {
       const content = await this.renderS.test(url, isMobile);
-      zyRedis.set(redisKey, content, 'ex', tools.config('redis').ex);
+       zyRedis.set(redisKey, content, 'ex', tools.config('redis').ex);
       return (content.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
     } else {
       return (data.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
