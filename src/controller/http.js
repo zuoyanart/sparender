@@ -2,47 +2,30 @@
 const http = require('http');
 const url = require('url');
 
-
-
 module.exports = class extends zuoyan.Controller {
   constructor() {
     super();
-    this.httpS = this.service('http');
+    this.routerS = this.service('router');
     global.renderLimit = 0;
-    // this.articleM = this.model('test/article');
   }
 
   async startServer() {
     const server = http.createServer(async (req, res) => {
-      try {
-        console.log(('limit', global.renderLimit));
-        var urlObj = url.parse(req.url, true);
-        var query = urlObj.query;
-        //连接关闭事件
-        res.on('close', () => {
-          if (urlObj.pathname === '/render' && this.checkRenderUrl(query.url)) {
-            global.renderLimit--;
-          }
-          logger.warn('close', req.url);
-        });
-        if (urlObj.pathname === '/render' && this.checkRenderUrl(query.url)) {
-          if (global.renderLimit >= tools.config('renderLimit')) {
-            this.sendHtml(res, '超出并发限制,请稍后重试');
-            return;
-          } else {
-            global.renderLimit++;
-            this.sendHtml(res, await this.httpS.getContent(query.url, req.headers['user-agent']));
-          }
-        } else {
-          this.sendHtml(res, '请求地址非法');
+      let urlObj = url.parse(req.url, true);
+      req.urlObj = urlObj;
+      console.log(urlObj, req.url);
+      console.log(req.headers['user-agent']);
+
+      //连接关闭事件
+      res.on('close', async () => {
+        const data = await zyRedis.get(urlObj.href);
+        if (data) {
+          global.renderLimit--;
+          zyRedis.del(urlObj.href);
         }
-
-      } catch (e) {
-        logger.error(e);
-        this.sendHtml(res, e.message);
-      }
-
-
+        // logger.warn('close', req.url);
+      });
+      this.routerS.router(req, res);
     });
 
 
@@ -53,19 +36,6 @@ module.exports = class extends zuoyan.Controller {
     });
   }
 
-
-  sendHtml(res, content = '未知错误') {
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.write(content);
-    res.end();
-  }
-
-  checkRenderUrl(url) {
-    if (url && /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(url)) {
-      return true;
-    }
-    return false;
-  }
 
 
 };
