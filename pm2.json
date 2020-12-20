@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "task",
+    "name": "sparender3001",
     "script": "production.js",
     "cwd": "./",
     "exec_mode": "fork",
