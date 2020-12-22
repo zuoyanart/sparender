@@ -1,6 +1,6 @@
 {
   "name": "sparender",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "动态渲染SPA站点, 为搜索引擎提供JavaScript站点SEO优化方案",
   "main": "index.js",
   "scripts": {

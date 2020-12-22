@@ -15,6 +15,20 @@ cd sparender
 npm i
 npm start
 ```
+## 免费接入
+<a href="http://www.zuoyanit.com/jieru" target="_blank">免费接入SSR渲染</a>
+
+请求地址: http://api.zuoyanit.com/render
+
+请求方式: GET
+
+请求示例: http://api.zuoyanit.com/render/http://www.zuoyanit.com
+
+反向代理配置请参阅: <a href="http://www.zuoyanit.com/wendang-4-20list" target="_blank">文档</a>
+
+* 为了防止滥用,使用前请联系作者,设置域名白名单
+
+* 免费提供200个页面(以redis中存的记录条数为准)
 
 ## 查看效果
 ```js
