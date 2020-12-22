@@ -1,7 +1,7 @@
 {
-  "name": "task",
+  "name": "sparender",
   "version": "2.0.0",
-  "description": "",
+  "description": "动态渲染SPA站点, 为搜索引擎提供JavaScript站点SEO优化方案",
   "main": "index.js",
   "scripts": {
     "start": "node development.js",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.zuoyanit.com/zuoyanit/template-task.git"
+    "url": "https://github.com/zuoyanart/sparender"
   },
-  "author": "",
+  "author": "左盐",
   "license": "ISC",
   "dependencies": {
     "bignumber.js": "^9.0.0",
