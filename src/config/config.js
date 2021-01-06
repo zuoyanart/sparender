@@ -6,7 +6,7 @@ module.exports = {
   redis: {
     port: 6379,
     host: '127.0.0.1',
-    ex: 1000 * 60 * 60 * 7
+    ex: 60 * 60 * 24 * 7
   },
   mobileRender: {
     name: 'iPhone X',

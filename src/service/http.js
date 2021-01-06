@@ -17,8 +17,8 @@ module.exports = class extends zuoyan.Service {
           const data = await zyRedis.get(redisKey);
           if (tools.isEmpty(data)) {
             global.renderLimit++;
-            await zyRedis.set(href, 'limit', 'ex', 1000 * 60);
-            const content = await this.renderS.test(url, isMobile);
+            await zyRedis.set(href, 'limit', 'ex', 5 * 60);
+            const content = await this.renderS.htmlRender(url, isMobile);
             zyRedis.set(redisKey, content, 'ex', tools.config('redis').ex);
             return (content.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
           } else {

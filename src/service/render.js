@@ -80,7 +80,7 @@ module.exports = class extends zuoyan.Service {
   /**
    * 
    */
-  async test(url = 'http://127.0.0.1:8181/', isMobile = false) {
+  async htmlRender(url = 'http://127.0.0.1:8181/', isMobile = false) {
     // 在业务中取出实例使用
     return await global.pptPoll.use(async instance => {
       return new Promise(async (resolve, reject) => {
